@@ -1,4 +1,4 @@
-package hash.sleepyhoon;
+package sleepyhoon.hash;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
