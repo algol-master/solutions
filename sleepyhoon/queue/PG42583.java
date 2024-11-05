@@ -38,6 +38,7 @@ class PG42583 {
         q.offer(pop);
         while(sum!=0) {
             int size = q.size();
+            // 다리 위에 있는 트럭을 하나 앞으로 전진
             for(int i=0;i<size;i++){
                 Truck poll = q.poll();
                 poll.move();
@@ -47,7 +48,7 @@ class PG42583 {
                     q.offer(poll);
                 }
             }
-
+            // 다리 위에 올라갈 수 있다면 스택에서 트럭을 하나 꺼내서 다리 위에 놓음
             if(!st.isEmpty()) {
                 Truck peek = st.peek();
                 if(peek.getWeight() + sum <= weight) {
