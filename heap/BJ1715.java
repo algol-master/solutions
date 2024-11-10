@@ -10,9 +10,9 @@ import static java.lang.System.out;
   기존 우선순위 큐에서 풀었던 문제 - 풀이 생략 및 이하 구성은 동일
 */
 
-public class Main {
+public class BJ1715 {
 
-    public static void main(String[] args) throws Exception {
+    public static void Main(String[] args) throws Exception {
         BufferedReader br = new BufferedReader(new InputStreamReader(in));
         StringBuilder sb = new StringBuilder();
         StringTokenizer st;
