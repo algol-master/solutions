@@ -14,34 +14,25 @@ public class BJ1655 {
         StringBuilder sb = new StringBuilder();
         PriorityQueue<Integer> smaller = new PriorityQueue<>(Collections.reverseOrder());
         PriorityQueue<Integer> bigger = new PriorityQueue<>();
-        int mid = 0;
 
-        for(int i=0;i<n;i++){
+        for (int i = 0; i < n; i++) {
             int input = Integer.parseInt(br.readLine());
-            // 초기값 초기화
-            if(mid==0) {
-                mid = input;
-                sb.append(mid).append("\n");
-                continue;
-            }
 
-            if(mid <= input) {
-                bigger.offer(input);
-                if(bigger.size() - smaller.size() >= 2) {
-                    smaller.offer(mid);
-                    mid = bigger.poll();
-                }
-            }
-            else {
+            if (smaller.isEmpty() || input <= smaller.peek()) {
                 smaller.offer(input);
-                if(smaller.size() - bigger.size() >= 2) {
-                    bigger.offer(mid);
-                    mid = smaller.poll();
-                }
+            } else {
+                bigger.offer(input);
             }
 
-            sb.append(mid).append("\n");
+            if (smaller.size() > bigger.size() + 1) {
+                bigger.offer(smaller.poll());
+            } else if (bigger.size() > smaller.size()) {
+                smaller.offer(bigger.poll());
+            }
+
+            sb.append(smaller.peek()).append("\n");
         }
-        System.out.println(sb);
+
+        System.out.print(sb);
     }
 }
