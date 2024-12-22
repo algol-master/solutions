@@ -1,3 +1,5 @@
+package sleepyhoon.dp;
+
 import java.util.Scanner;
 
 public class BJ10844 {

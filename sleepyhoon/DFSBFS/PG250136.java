@@ -1,4 +1,4 @@
-package sleepyhoon.etc;
+package sleepyhoon.DFSBFS;
 
 import java.util.ArrayDeque;
 import java.util.HashMap;
