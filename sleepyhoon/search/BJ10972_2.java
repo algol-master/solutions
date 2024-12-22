@@ -1,4 +1,4 @@
-package sleepyhoon.TwoPointer;
+package sleepyhoon.search;
 
 import java.util.Scanner;
 

@@ -1,4 +1,4 @@
-package sleepyhoon.TwoPointer;
+package sleepyhoon.search;
 
 import java.io.BufferedReader;
 import java.io.IOException;
