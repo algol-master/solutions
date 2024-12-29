@@ -1,3 +1,5 @@
+package sleepyhoon.greedy;
+
 import java.util.Scanner;
 
 public class BJ11501 {

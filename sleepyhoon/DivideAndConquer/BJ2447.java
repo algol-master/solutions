@@ -1,3 +1,5 @@
+package sleepyhoon.DivideAndConquer;
+
 import java.util.Scanner;
 
 public class BJ2447 {
