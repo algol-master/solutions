@@ -1,41 +1,35 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayDeque;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
-import java.util.Queue;
 import java.util.StringTokenizer;
 
 public class BJ2213 {
-    static class Node {
-        int index;
-        int cost;
-
-        Node(int index, int cost) {
-            this.index = index;
-            this.cost = cost;
-        }
-    }
+    static List<List<Integer>> list = new ArrayList<>();
+    static boolean[] visited;
+    static int[] arr;
+    static int[][] dp;
+    static int n;
+    static int max;
+    static StringBuilder sb = new StringBuilder();
+    static List<Integer> answer = new ArrayList<>();
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
-        int n = Integer.parseInt(br.readLine());
+        n = Integer.parseInt(br.readLine());
         StringTokenizer st = new StringTokenizer(br.readLine());
-        Node[] arr = new Node[n+1];
-
-        int[] dp = new int[n+1];
-        Queue<Integer> index = new ArrayDeque<>();
+        arr = new int[n+1];
+        visited = new boolean[n+1];
+        dp = new int[n+1][2];
 
         for(int i=1;i<=n;i++){
-            int cost = Integer.parseInt(st.nextToken());
-            arr[i] = new Node(i,cost);
+            arr[i] = Integer.parseInt(st.nextToken());
         }
 
-        dp[1] = arr[1].cost;
-
-        List<List<Integer>> list = new ArrayList<>();
-        for(int i=0;i<n;i++){
+        for(int i=0;i<=n;i++){
             list.add(new ArrayList<>());
         }
 
@@ -45,16 +39,66 @@ public class BJ2213 {
             int to = Integer.parseInt(st.nextToken());
 
             list.get(from).add(to);
+            list.get(to).add(from);
         }
 
-        if(n==1) {
-            System.out.println(arr[1].cost);
-            System.out.println(arr[1].index);
-            return;
+        dfs(1);
+        System.out.println(max);
+        if(dp[1][1] > dp[1][0]) {
+            trace(1,1);
+        } else {
+            trace(1,0);
         }
 
-        for(int i=2;i<n+1;i++){
-            // i번 노드와 인접한게 무엇인지 찾는다.
+        Collections.sort(answer);
+        for (Integer i : answer) {
+            System.out.print(i+" ");
         }
+    }
+
+    private static void dfs(int start) {
+        int childCount = list.get(start).size();
+        if(childCount==0) return;
+
+        dp[start][0] = 0;
+        dp[start][1] = arr[start];
+
+        visited[start] = true;
+
+        for(int child : list.get(start)) {
+            if(!visited[child]) {
+                dfs(child);
+
+                dp[start][0] += Math.max(dp[child][0],dp[child][1]);
+                dp[start][1] += dp[child][0];
+
+                max = Math.max(dp[start][0],dp[start][1]);
+            }
+        }
+        visited[start] = false;
+    }
+
+    private static void trace(int start, int attend) {
+        visited[start] = true;
+        if(attend==1) {
+            answer.add(start);
+            for(int i=0;i<list.get(start).size();i++){
+                int next = list.get(start).get(i);
+                if(!visited[next]){
+                    trace(next,0);
+                }
+            }
+        } else {
+            for(int i=0;i<list.get(start).size();i++){
+                int next = list.get(start).get(i);
+                if(!visited[next]) {
+                    if(dp[next][1] > dp[next][0]) {
+                        trace(next,1);
+                    } else
+                        trace(next,0);
+                }
+            }
+        }
+        visited[start] = false;
     }
 }
