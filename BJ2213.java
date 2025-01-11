@@ -17,24 +17,22 @@ public class BJ2213 {
             this.cost = cost;
         }
     }
+    static List<List<Integer>> list = new ArrayList<>();
+    static int[][] dp;
+    static Node[] arr;
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
         int n = Integer.parseInt(br.readLine());
         StringTokenizer st = new StringTokenizer(br.readLine());
-        Node[] arr = new Node[n+1];
-
-        int[] dp = new int[n+1];
-        Queue<Integer> index = new ArrayDeque<>();
+        arr = new Node[n+1];
+        dp = new int[n+1][n+1];
 
         for(int i=1;i<=n;i++){
             int cost = Integer.parseInt(st.nextToken());
             arr[i] = new Node(i,cost);
         }
 
-        dp[1] = arr[1].cost;
-
-        List<List<Integer>> list = new ArrayList<>();
         for(int i=0;i<n;i++){
             list.add(new ArrayList<>());
         }
@@ -45,6 +43,7 @@ public class BJ2213 {
             int to = Integer.parseInt(st.nextToken());
 
             list.get(from).add(to);
+            list.get(to).add(from);
         }
 
         if(n==1) {
@@ -53,8 +52,7 @@ public class BJ2213 {
             return;
         }
 
-        for(int i=2;i<n+1;i++){
-            // i번 노드와 인접한게 무엇인지 찾는다.
-        }
+
     }
+
 }

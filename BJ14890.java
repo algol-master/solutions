@@ -10,7 +10,6 @@ public class BJ14890 {
         int n = Integer.parseInt(st.nextToken());
         int l = Integer.parseInt(st.nextToken());
 
-
-
+        System.out.println();
     }
 }
