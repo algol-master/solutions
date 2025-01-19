@@ -50,7 +50,7 @@ public class BJ2307 {
             graph.get(to).add(new Node(from, cost));
         }
         // 최단 거리를 구했음
-        int original = dijkstra(visited, parents);
+        int original = dijkstra(parents);
 
         // 최단 거리의 경로를 구함
         findPath(n, parents);
@@ -65,7 +65,7 @@ public class BJ2307 {
                 visited[j] = false;
                 parents[j] = j;
             }
-            int after = dijkstra(visited, parents);
+            int after = dijkstra(parents);
             if (after == Integer.MAX_VALUE / 2) {
                 answer = -1;
                 break;
@@ -90,7 +90,7 @@ public class BJ2307 {
         return save;
     }
 
-    private static int dijkstra(boolean[] visited, int[] parents) {
+    private static int dijkstra(int[] parents) {
         int[] dist = new int[n + 1];
         for (int i = 0; i <= n; i++) {
             dist[i] = Integer.MAX_VALUE / 2;
@@ -101,14 +101,13 @@ public class BJ2307 {
         pq.offer(new Node(1, 0));
         while (!pq.isEmpty()) {
             Node poll = pq.poll();
-            visited[poll.index] = true;
 
             if (dist[poll.index] < poll.cost) {
                 continue;
             }
             for (int i = 0; i < graph.get(poll.index).size(); i++) {
                 Node node = graph.get(poll.index).get(i);
-                if (visited[node.index] || !node.possible) {
+                if (!node.possible) {
                     continue;
                 }
                 if (dist[node.index] > dist[poll.index] + node.cost) {
