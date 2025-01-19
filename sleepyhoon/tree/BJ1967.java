@@ -70,12 +70,15 @@ public class BJ1967 {
         dist[start] = 0;
 
         while(!q.isEmpty()) {
+            // 시작점
             Node poll = q.poll();
 
             for(int i=0;i<tree.get(poll.index).size();i++){
                 Node node = tree.get(poll.index).get(i);
                 if(visited[node.index]) continue;
                 visited[node.index] = true;
+                // dist[] = 이미 저장된 최단 거리
+                // dist[poll.index] + node.cost = 그냥 시작점에서 바로 node로 가는 경로
                 dist[node.index] = dist[poll.index] + node.cost;
                 q.offer(new Node(node.index,dist[node.index]));
             }
