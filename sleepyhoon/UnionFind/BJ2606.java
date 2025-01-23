@@ -38,6 +38,7 @@ public class BJ2606 {
         if (pa == pb)
             return false;
 
+        // 높이가 낮은 것을 -> 높은 것에 붙일 것이다.
         if(height[pa]<height[pb]) {
             int tmp = pa;
             pa = pb;

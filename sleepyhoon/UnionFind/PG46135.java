@@ -1,3 +1,5 @@
+package sleepyhoon.UnionFind;
+
 import java.util.*;
 
 class PG46135 {
