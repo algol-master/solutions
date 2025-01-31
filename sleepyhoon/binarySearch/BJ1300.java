@@ -1,3 +1,5 @@
+package sleepyhoon.binarySearch;
+
 import java.util.Scanner;
 
 public class BJ1300 {
