@@ -55,21 +55,21 @@ public class BJ2075_2 {
         }
 
         private void heapDown(int index) {
-            int smallest = index;
+            int biggest = index;
             int left = getLeftChild(index);
             int right = getRightChild(index);
 
-            if (left <= size && heap[left] > heap[smallest]) {
-                smallest = left;
+            if (left <= size && heap[left] > heap[biggest]) {
+                biggest = left;
             }
 
-            if (left <= size && heap[right] > heap[smallest]) {
-                smallest = right;
+            if (left <= size && heap[right] > heap[biggest]) {
+                biggest = right;
             }
 
-            if (smallest != index) {
-                swap(index, smallest);
-                heapDown(smallest);
+            if (biggest != index) {
+                swap(index, biggest);
+                heapDown(biggest);
             }
         }
     }
@@ -78,7 +78,7 @@ public class BJ2075_2 {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int n = sc.nextInt();
-        PQ pq = new PQ(n*n*2);
+        PQ pq = new PQ(n*n*2+1);
         for(int i=0;i<n;i++){
             for(int j=0;j<n;j++){
                 pq.enqueue(sc.nextInt());
