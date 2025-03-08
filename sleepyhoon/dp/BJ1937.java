@@ -40,17 +40,15 @@ public class BJ1937 {
             return dp[x][y];
         } else {
             int max = 0;
-            if (dp[x][y] == -1) {
-                dp[x][y] = 0;
-                for (int i = 0; i < 4; i++) {
-                    int nx = x + dx[i];
-                    int ny = y + dy[i];
+            dp[x][y] = 0;
+            for (int i = 0; i < 4; i++) {
+                int nx = x + dx[i];
+                int ny = y + dy[i];
 
-                    if (nx < 0 || nx >= n || ny < 0 || ny >= n || arr[x][y] >= arr[nx][ny]) {
-                        continue;
-                    }
-                    max = Math.max(max, dfs(nx, ny));
+                if (nx < 0 || nx >= n || ny < 0 || ny >= n || arr[x][y] >= arr[nx][ny]) {
+                    continue;
                 }
+                max = Math.max(max, dfs(nx, ny));
             }
             return dp[x][y] = max + 1;
         }
